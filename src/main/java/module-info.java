@@ -15,11 +15,11 @@ module ba.reservation.nightclubmanagement {
 
 
 
-    opens ba.reservation.nightclubmanagement to javafx.fxml;
-    opens ba.reservation.nightclubmanagement.business.model to org.hibernate.orm.core;
+    opens ba.reservation.hotelmanagement to javafx.fxml;
+    opens ba.reservation.hotelmanagement.business.model to org.hibernate.orm.core;
+
     exports ba.reservation.nightclubmanagement;
-    exports ba.reservation.nightclubmanagement.gui;
-    opens ba.reservation.nightclubmanagement.gui to javafx.fxml;
+    exports ba.reservation.nightclubmanagement.business.model;
 
 
 }
