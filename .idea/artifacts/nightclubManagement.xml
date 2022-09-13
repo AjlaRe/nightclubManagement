@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="nightclubManagement">
+    <output-path>$PROJECT_DIR$/out/artifacts/nightclubManagement</output-path>
+    <root id="root">
+      <element id="archive" name="nightclubManagement.jar">
+        <element id="module-output" name="nightclubManagement" />
+      </element>
+    </root>
+  </artifact>
+</component>
