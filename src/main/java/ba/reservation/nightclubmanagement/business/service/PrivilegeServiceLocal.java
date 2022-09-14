@@ -5,6 +5,6 @@ import ba.reservation.nightclubmanagement.business.model.Privilege;
 
 import java.util.List;
 
-public interface PrivilegeServiceLocal  {
+public interface PrivilegeServiceLocal {
     List<Privilege> findAll();
 }

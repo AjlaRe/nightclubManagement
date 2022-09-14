@@ -1,11 +1,10 @@
 package ba.reservation.nightclubmanagement.business.place;
 
-
-
 import ba.reservation.nightclubmanagement.business.model.Place;
 import ba.reservation.nightclubmanagement.business.service.AbstractService;
 import ba.reservation.nightclubmanagement.commons.Constants;
-import ba.reservation.nightclubmanagement.business.model.Place;
+import javafx.scene.control.ChoiceDialog;
+import javafx.scene.control.SelectionModel;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,6 +14,15 @@ public class PlaceService extends AbstractService<Place, Integer> {
     PlaceService() {
         super(Place.class);
     }
+
+    public PlaceService(Class<Place> entityClass) {
+        super(entityClass);
+    }
+
+    public static SelectionModel<Object> getSelectionModel() {
+        return null;
+    }
+
 
     @Override
     protected EntityManager getEntityManager() {

@@ -24,6 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 import java.util.List;
+import static javafx.collections.FXCollections.observableList;
 
 public class UserAdminPanel extends VBox {
     private Label titleLabel = new Label("Administracija korisnika");
@@ -41,6 +42,7 @@ public class UserAdminPanel extends VBox {
     private Button deleteUserButton = new Button("Obriši");
 
     public UserAdminPanel() {
+        this.userObservableList = userObservableList;
         titleLabel.setFont(new Font("Arial", 20));
         setSpacing(5);
         setPadding(new Insets(10, 10, 10, 10));
@@ -71,10 +73,10 @@ public class UserAdminPanel extends VBox {
         List<Privilege> privileges = PrivilegeServiceFactory.PRIVILEGE_SERVICE.getPrivilegeService().findAll();
         privilegeChoiceBox.setItems(FXCollections.observableList(privileges));
         privilegeChoiceBox.getSelectionModel().select(0);
-        usernameTextField.setPromptText("Username..");
-        passwordField.setPromptText("Password..");
-        nameTextField.setPromptText("Ime..");
-        surnameTextField.setPromptText("Prezime..");
+        usernameTextField.setPromptText("Username");
+        passwordField.setPromptText("Password");
+        nameTextField.setPromptText("Name");
+        surnameTextField.setPromptText("Surname");
         addUserButton.setOnAction(this::addUser);
         deleteUserButton.setOnAction(this::removeUser);
         form.getChildren().addAll(
@@ -91,15 +93,12 @@ public class UserAdminPanel extends VBox {
     private void removeUser(ActionEvent actionEvent) {
         User selectedUser = userTableView.getSelectionModel().getSelectedItem();
         UserServiceLocal userService = UserServiceFactory.USER_SERVICE.getUserService();
-        //DB
         userService.removeById(selectedUser.getId());
-        //Table View
         userObservableList.remove(selectedUser);
     }
 
     private void addUser(ActionEvent event) {
         if (validate()) {
-            //TRANZIJENTAN
             User user = new User();
             user.setUsername(usernameTextField.getText());
             user.setPassword(passwordField.getText());
@@ -107,12 +106,11 @@ public class UserAdminPanel extends VBox {
             user.setSurname(surnameTextField.getText());
             user.setIdPrivilege(privilegeChoiceBox.getValue());
             UserServiceLocal userService = UserServiceFactory.USER_SERVICE.getUserService();
-            //TRANZIJENTNOG U PERZISTENTNO STANJE
             userService.create(user);
             userObservableList.add(user);
             clearInput();
         }else{
-            //prikažite smislenu poruku korisniku
+
         }
     }
 

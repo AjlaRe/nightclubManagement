@@ -23,83 +23,93 @@ import javafx.scene.text.Font;
 import java.math.BigDecimal;
 
 public class PlaceAdminPanel extends VBox {
-    private Label titleLabel = new Label("Administracija soba");
-    private ObservableList<Place> roomObservableList;
-    private TableView<Place> roomTableView = new TableView<>();
+    private Label titleLabel = new Label("Administracija stolova");
+    private ObservableList<Place> placeObservableList;
+    private TableView<Place>  placeTableView = new TableView<>();
 
-    private TextField roomCodeTextField = new TextField();
-    private TextField numberOfBedsTextField = new TextField();
+    private TextField placeCodeTextField = new TextField();
+
+    private TextField numberOfPlaceTextField = new TextField();
     private TextField priceTextField = new TextField();
-    private Button addRoomButton = new Button("Dodaj sobu");
-    private Button removeRoomButton = new Button("Obriši sobu");
+
+    private Button addPlaceButton = new Button("Dodaj stol/mjesto");
+
+    private Button removePlaceButton = new Button("Obriši stol/mjesto");
 
     public PlaceAdminPanel(){
         titleLabel.setFont(new Font("Arial", 20));
         setSpacing(5);
         setPadding(new Insets(10, 10, 10, 10));
 
-        numberOfBedsTextField.textProperty().addListener(new ChangeListener<String>() {
+        numberOfPlaceTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
                                 String newValue) {
                 if (!newValue.matches("\\d*")) {
-                    numberOfBedsTextField.setText(newValue.replaceAll("[^\\d]", ""));
+                    numberOfPlaceTextField.setText(newValue.replaceAll("[^\\d]", ""));
                 }
             }
         });
 
-        TableColumn<Place, String> roomCodeColumn = new TableColumn<>("Kod sobe");
-        roomCodeColumn.setCellValueFactory(new PropertyValueFactory<Place, String>("code"));
+//        TableColumn<Place, String>  placeCodeColumn = new TableColumn<>("Kod stola");
+//        placeCodeColumn.setCellValueFactory(new PropertyValueFactory<Place, String>("code"));
 
-        TableColumn<Place, Integer>  numberOfBedsColumn = new TableColumn<>("Broj kreveta");
-        numberOfBedsColumn.setCellValueFactory(new PropertyValueFactory<Place, Integer>("numberOfBeds"));
+        TableColumn<Place, Integer>  numberOfTableColumn = new TableColumn<>("Broj stola");
+        numberOfTableColumn.setCellValueFactory(new PropertyValueFactory<Place, Integer>("numberOfPTable"));
 
-        TableColumn<Place, BigDecimal> roomPriceColumn = new TableColumn<>("Cijena sobe");
-        roomPriceColumn.setCellValueFactory(new PropertyValueFactory<Place, BigDecimal>("price"));
+        TableColumn<Place, Integer>  numberOfGuestColumn = new TableColumn<>("Broj gostiju");
+        numberOfGuestColumn.setCellValueFactory(new PropertyValueFactory<Place, Integer>("numberOfGuest"));
+
+        TableColumn<Place, BigDecimal> placePriceColumn = new TableColumn<>("Cijena stola");
+        placePriceColumn.setCellValueFactory(new PropertyValueFactory<Place, BigDecimal>("price"));
 
         PlaceService placeService = PlaceServiceFactory.SERVICE.getPlaceService();
-        roomObservableList = FXCollections.observableList(placeService.findAll());
-        roomTableView.setItems(roomObservableList);
-        roomTableView.getColumns().addAll(
-                roomCodeColumn, numberOfBedsColumn, roomPriceColumn);
+        placeObservableList = FXCollections.observableList(placeService.findAll());
+        placeTableView.setItems(placeObservableList);
+        placeTableView.getColumns().addAll(
+               numberOfTableColumn, numberOfGuestColumn, placePriceColumn);
 
-        getChildren().addAll(roomTableView, getForm());
+        getChildren().addAll(placeTableView, getForm());
     }
 
     private HBox getForm(){
         HBox form = new HBox();
         form.setSpacing(3);
-        roomCodeTextField.setPromptText("Kod sobe..");
-        numberOfBedsTextField.setPromptText("Broj kreveta u sobi..");
-        priceTextField.setPromptText("Cijena sobe..");
-        addRoomButton.setOnAction(this::addRoom);
-        removeRoomButton.setOnAction(this::removeRoom);
+        placeCodeTextField.setPromptText("KOD/BROJ STOLA..");
+        numberOfPlaceTextField.setPromptText("Broj osoba za stolom..");
+        priceTextField.setPromptText("Cijena stola..");
+        addPlaceButton.setOnAction(this::addPlace);
+        removePlaceButton.setOnAction(this::removePlace);
         form.getChildren().addAll(
-                roomCodeTextField,
-                numberOfBedsTextField,
+                placeCodeTextField,
+                numberOfPlaceTextField,
                 priceTextField,
-                addRoomButton,
-                removeRoomButton);
+                addPlaceButton,
+                removePlaceButton);
         return form;
     }
 
-    private void removeRoom(ActionEvent actionEvent) {
-        Place selectedRoom = roomTableView.getSelectionModel().getSelectedItem();
-        PlaceService placeService = PlaceServiceFactory.SERVICE.getPlaceService();
-        placeService.remove(selectedRoom);
-        roomObservableList.remove(selectedRoom);
+    private void addPlace(ActionEvent actionEvent) {
+        Place place = new Place();
     }
 
-    private void addRoom(ActionEvent actionEvent){
-        Place room = new Place();
-        room.setCode(roomCodeTextField.getText());
-        room.setNumberofguests(Integer.parseInt(numberOfBedsTextField.getText()));
-        room.setPrice(new BigDecimal(priceTextField.getText()));
-        PlaceService roomService = PlaceServiceFactory.SERVICE.getPlaceService();
-        roomService.create(room);
-        roomObservableList.add(room);
-        roomCodeTextField.setText("");
-        numberOfBedsTextField.clear();
+    private void removePlace(ActionEvent actionEvent) {
+        Place selectedPlace = (Place) PlaceService.getSelectionModel().getSelectedItem();
+        PlaceService placeService = PlaceServiceFactory.SERVICE.getPlaceService();
+        placeService.remove(selectedPlace);
+        placeObservableList.remove(selectedPlace);
+    }
+
+    private void setAddPlaceButton(ActionEvent actionEvent){
+        Place place = new Place();
+        place.setCode(placeCodeTextField.getText());
+        place.setNumberofguests(Integer.parseInt(numberOfPlaceTextField.getText()));
+        place.setPrice(new BigDecimal(priceTextField.getText()));
+        PlaceService placeService = PlaceServiceFactory.SERVICE.getPlaceService();
+        placeService.create(place);
+        placeObservableList.add(place);
+        placeCodeTextField.setText("");
+        numberOfPlaceTextField.clear();
         priceTextField.setText("");
     }
 }

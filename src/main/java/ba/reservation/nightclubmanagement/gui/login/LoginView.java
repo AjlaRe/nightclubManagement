@@ -23,7 +23,7 @@ public class LoginView extends GridPane {
     public LoginView() {
         setHgap(10);
         setVgap(10);
-        setPadding(new Insets(25, 25, 25, 25));
+        setPadding(new Insets(40, 25, 40, 25));
         setAlignment(Pos.CENTER);
 
         //username
@@ -50,7 +50,6 @@ public class LoginView extends GridPane {
     public String getPassword() {
         return passwordField.getText();
     }
-
 
     public void setLoginMessage(String message){
         messageLabel.setText(message);

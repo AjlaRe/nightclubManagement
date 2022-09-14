@@ -50,7 +50,7 @@ public class Place implements Serializable {
     public Place(Integer id, Integer numberofguests, Integer numberoftable, BigDecimal price, Integer id_guest) {
         this.id = id;
         this.numberofguests = numberofguests;
-        this.numberoftable = numberoftable;
+        this.numberoftable = numberoftable ;
         this.price = price;
         this.id_guest = id_guest;
 
@@ -71,20 +71,24 @@ public class Place implements Serializable {
         this.id = id;
     }
 
-    public Integer getNumberofguests() {
+    public void getNumberOfGuest(){
+        this.numberofguests = numberofguests;
+
+    }
+
+    public Integer setNumberOfGuests() {
         return numberofguests;
     }
 
     public Integer getNumberoftable() {
-        return numberoftable;
+      return numberoftable;
+
     }
 
-    public void setNumberoftable(Integer numberoftable) {
+    public Integer setNumberOfTable() {
         this.numberoftable = numberoftable;
-    }
 
-    public void setNumberofguests(Integer numberofguests) {
-        this.numberofguests = numberofguests;
+        return null;
     }
 
     public BigDecimal getPrice() {
@@ -137,5 +141,8 @@ public class Place implements Serializable {
 
     }
     public void setCode(String text) {
+    }
+
+    public void setNumberofguests(int parseInt) {
     }
 }

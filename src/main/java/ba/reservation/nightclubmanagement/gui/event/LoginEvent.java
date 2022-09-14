@@ -38,12 +38,10 @@ public class LoginEvent implements EventHandler<ActionEvent> {
             Privilege privilege = user.getIdPrivilege();
             BorderPane mainPanel;
             if("admin".equalsIgnoreCase(privilege.getName())){
-                //admin panel
                 mainPanel = new AdminView();
                 Controller.instance().setAdminView((AdminView) mainPanel);
                 Controller.instance().getStage().setTitle("Admin Panel: " + Controller.instance().getLoggedUser().getName());
             }else{
-                //employee panel
                 mainPanel = new EmployeeView();
                 Controller.instance().setEmployeeView((EmployeeView) mainPanel);
                 Controller.instance().getStage().setTitle("Employee Panel: " + user.getName()+" " + user.getSurname());

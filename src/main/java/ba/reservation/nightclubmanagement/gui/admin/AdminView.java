@@ -1,6 +1,5 @@
 package ba.reservation.nightclubmanagement.gui.admin;
 
-
 import ba.reservation.nightclubmanagement.gui.Controller;
 import ba.reservation.nightclubmanagement.gui.admin.place.PlaceAdminPanel;
 import ba.reservation.nightclubmanagement.gui.admin.user.UserAdminPanel;
@@ -14,12 +13,10 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-
 public class AdminView extends BorderPane {
     private final ToggleButton userToggleButton = new ToggleButton("Korisnici");
-    private final ToggleButton roomToggleButton = new ToggleButton("Sobe");
+    private final ToggleButton placeToggleButton = new ToggleButton("Stol");
     private final Button logoutButton = new Button("Odjava");
-
     private UserAdminPanel userAdminPanel = new UserAdminPanel();
     private PlaceAdminPanel placeAdminPanel = new PlaceAdminPanel();
 
@@ -28,7 +25,7 @@ public class AdminView extends BorderPane {
 
         ToggleGroup menuToggleGroup = new ToggleGroup();
         userToggleButton.setToggleGroup(menuToggleGroup);
-        roomToggleButton.setToggleGroup(menuToggleGroup);
+        placeToggleButton.setToggleGroup(menuToggleGroup);
 
         userToggleButton.setSelected(true);
 
@@ -38,8 +35,8 @@ public class AdminView extends BorderPane {
         logoutButton.setOnAction(Controller.instance().getEventBus().getLogoutEvent());
         logoutButton.setText("Odjava("+Controller.instance().getLoggedUser().getName()+")");
         userToggleButton.setOnAction(e->setCenter(userAdminPanel));
-        roomToggleButton.setOnAction(e->setCenter(placeAdminPanel));
-        mainMenu.getChildren().addAll(userToggleButton, roomToggleButton);
+        placeToggleButton.setOnAction(e->setCenter(placeAdminPanel));
+        mainMenu.getChildren().addAll(userToggleButton, placeToggleButton);
 
         HBox logoutHBox = new HBox(logoutButton);
         logoutHBox.setAlignment(Pos.CENTER_RIGHT);

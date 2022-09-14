@@ -6,15 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -40,7 +37,7 @@ public class Reservation implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @Column(name = "id_guest")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private Integer id_guest;
     @Basic(optional = false)
     @Column(name = "id_place")
@@ -49,7 +46,7 @@ public class Reservation implements Serializable {
     private Date toDate;
     @Basic(optional = false)
     private Date date;
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "price")
     private BigDecimal price;
 
@@ -70,6 +67,7 @@ public class Reservation implements Serializable {
 
     }
 
+
     public Integer getId() {
         return id;
     }
@@ -79,19 +77,21 @@ public class Reservation implements Serializable {
     }
 
 
-    public Integer id_guest() {
+    public Integer getId_guest() {
         return id_guest;
     }
 
-    public void setin_guest() {
+    public Integer setId_guest() {
         this.id_guest = id_guest;
+
+        return null;
     }
 
-    public Integer getid_tableplace() {
+    public Integer getId_place() {
         return id_place ;
     }
 
-    public void setId_tableplace() {
+    public void setId_place() {
         this.id_place= id_place;
     }
 
@@ -110,8 +110,8 @@ public class Reservation implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
 
+    }
 
 
     @Override
