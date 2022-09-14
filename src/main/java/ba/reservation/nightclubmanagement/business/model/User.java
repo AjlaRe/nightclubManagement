@@ -3,8 +3,6 @@ package ba.reservation.nightclubmanagement.business.model;
 
 
 
-import ba.reservation.nightclubmanagement.business.service.AbstractService;
-
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;

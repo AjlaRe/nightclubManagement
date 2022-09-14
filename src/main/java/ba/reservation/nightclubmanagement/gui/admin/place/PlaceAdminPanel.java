@@ -1,12 +1,9 @@
 package ba.reservation.nightclubmanagement.gui.admin.place;
 
 
-import ba.reservation.nightclubmanagement.business.model.Privilege;
 import ba.reservation.nightclubmanagement.business.model.Place;
-import ba.reservation.nightclubmanagement.business.model.User;
 import ba.reservation.nightclubmanagement.business.place.PlaceService;
 import ba.reservation.nightclubmanagement.business.place.PlaceServiceFactory;
-import ba.reservation.nightclubmanagement.business.service.PrivilegeServiceFactory;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

@@ -1,5 +1,7 @@
 package ba.reservation.nightclubmanagement.gui.event;
 
+
+
 import ba.reservation.nightclubmanagement.business.model.Privilege;
 import ba.reservation.nightclubmanagement.business.model.User;
 import ba.reservation.nightclubmanagement.business.service.UserServiceFactory;

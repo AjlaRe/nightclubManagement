@@ -6,7 +6,6 @@ import ba.reservation.nightclubmanagement.gui.admin.AdminView;
 import ba.reservation.nightclubmanagement.gui.employee.EmployeeView;
 import ba.reservation.nightclubmanagement.gui.event.EventBus;
 import ba.reservation.nightclubmanagement.gui.login.LoginView;
-import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
 public class Controller {
@@ -29,6 +28,7 @@ public class Controller {
         }
         return INSTANCE;
     }
+
 
     public EventBus getEventBus() {
         return eventBus;
