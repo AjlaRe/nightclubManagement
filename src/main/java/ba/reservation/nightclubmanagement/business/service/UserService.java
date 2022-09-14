@@ -3,6 +3,7 @@ package ba.reservation.nightclubmanagement.business.service;
 
 
 import ba.reservation.nightclubmanagement.business.model.User;
+import ba.reservation.nightclubmanagement.commons.Constants;
 
 
 import javax.persistence.*;

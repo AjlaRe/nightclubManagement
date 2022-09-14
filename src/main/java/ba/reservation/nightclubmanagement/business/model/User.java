@@ -3,6 +3,8 @@ package ba.reservation.nightclubmanagement.business.model;
 
 
 
+import ba.reservation.nightclubmanagement.business.service.AbstractService;
+
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -61,13 +63,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String username, String password, String name, String surname,Integer Id_Privilege) {
+    public User(Integer id, String username, String password, String name, String surname) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.idPrivilege= idPrivilege;
     }
 
     public Integer getId() {
