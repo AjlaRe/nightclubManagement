@@ -8,7 +8,6 @@
         <class>ba.reservation.nightclubmanagement.business.model.Guest</class>
         <class>ba.reservation.nightclubmanagement.business.model.Privilege</class>
         <class>ba.reservation.nightclubmanagement.business.model.Reservation</class>
-        <class>ba.reservation.nightclubmanagement.business.model.Reservationguest</class>
         <class>ba.reservation.nightclubmanagement.business.model.Place</class>
         <class>ba.reservation.nightclubmanagement.business.model.User</class>
         <properties>

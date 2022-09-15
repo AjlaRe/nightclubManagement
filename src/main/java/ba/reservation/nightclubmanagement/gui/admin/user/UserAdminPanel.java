@@ -42,7 +42,6 @@ public class UserAdminPanel extends VBox {
     private Button deleteUserButton = new Button("Obriši");
 
     public UserAdminPanel() {
-        this.userObservableList = userObservableList;
         titleLabel.setFont(new Font("Arial", 20));
         setSpacing(5);
         setPadding(new Insets(10, 10, 10, 10));
@@ -73,10 +72,10 @@ public class UserAdminPanel extends VBox {
         List<Privilege> privileges = PrivilegeServiceFactory.PRIVILEGE_SERVICE.getPrivilegeService().findAll();
         privilegeChoiceBox.setItems(FXCollections.observableList(privileges));
         privilegeChoiceBox.getSelectionModel().select(0);
-        usernameTextField.setPromptText("Username");
-        passwordField.setPromptText("Password");
-        nameTextField.setPromptText("Name");
-        surnameTextField.setPromptText("Surname");
+        usernameTextField.setPromptText("Username..");
+        passwordField.setPromptText("Password..");
+        nameTextField.setPromptText("Ime..");
+        surnameTextField.setPromptText("Prezime..");
         addUserButton.setOnAction(this::addUser);
         deleteUserButton.setOnAction(this::removeUser);
         form.getChildren().addAll(
@@ -93,12 +92,15 @@ public class UserAdminPanel extends VBox {
     private void removeUser(ActionEvent actionEvent) {
         User selectedUser = userTableView.getSelectionModel().getSelectedItem();
         UserServiceLocal userService = UserServiceFactory.USER_SERVICE.getUserService();
+
         userService.removeById(selectedUser.getId());
+
         userObservableList.remove(selectedUser);
     }
 
     private void addUser(ActionEvent event) {
         if (validate()) {
+
             User user = new User();
             user.setUsername(usernameTextField.getText());
             user.setPassword(passwordField.getText());

@@ -16,7 +16,7 @@ public abstract class AbstractService<E, P> {
     protected abstract EntityManager getEntityManager();
 
     public void create(E entity) {
-        getEntityManager().persist(entity);
+//        getEntityManager().persist(entity);
         EntityManager entityManager = getEntityManager();
         entityManager.getTransaction().begin();
         if (!entityManager.contains(entity)) {

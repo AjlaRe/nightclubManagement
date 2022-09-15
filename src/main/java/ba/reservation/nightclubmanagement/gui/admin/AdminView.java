@@ -3,8 +3,6 @@ package ba.reservation.nightclubmanagement.gui.admin;
 import ba.reservation.nightclubmanagement.gui.Controller;
 import ba.reservation.nightclubmanagement.gui.admin.place.PlaceAdminPanel;
 import ba.reservation.nightclubmanagement.gui.admin.user.UserAdminPanel;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -15,9 +13,11 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 public class AdminView extends BorderPane {
     private final ToggleButton userToggleButton = new ToggleButton("Korisnici");
-    private final ToggleButton placeToggleButton = new ToggleButton("Stol");
+    private final ToggleButton placeToggleButton = new ToggleButton("Stolovi");
     private final Button logoutButton = new Button("Odjava");
+
     private UserAdminPanel userAdminPanel = new UserAdminPanel();
+
     private PlaceAdminPanel placeAdminPanel = new PlaceAdminPanel();
 
     public AdminView() {

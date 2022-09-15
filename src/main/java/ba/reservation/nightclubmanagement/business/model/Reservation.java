@@ -11,14 +11,16 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
+
+
 
 @Entity
 @Table(name = "reservation")
+@XmlRootElement
 @NamedQueries({
         @NamedQuery(name = "Reservation.findAll", query = "SELECT r FROM Reservation r"),
         @NamedQuery(name = "Reservation.findById", query = "SELECT r FROM Reservation r WHERE r.id = :id"),
@@ -37,7 +39,6 @@ public class Reservation implements Serializable {
     private Integer id;
     @Basic(optional = false)
     @Column(name = "id_guest")
-    //@Temporal(TemporalType.TIMESTAMP)
     private Integer id_guest;
     @Basic(optional = false)
     @Column(name = "id_place")
@@ -46,7 +47,6 @@ public class Reservation implements Serializable {
     private Date toDate;
     @Basic(optional = false)
     private Date date;
-    //@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "price")
     private BigDecimal price;
 
@@ -58,7 +58,7 @@ public class Reservation implements Serializable {
         this.id = id;
     }
 
-    public Reservation(Integer id, Date date, Integer id_guest,Integer id_tableplace, BigDecimal price) {
+    public Reservation(Integer id, Date date, Integer id_guest,Integer id_place, BigDecimal price) {
         this.id = id;
         this.date=date;
         this. id_guest=id_guest;
@@ -112,6 +112,7 @@ public class Reservation implements Serializable {
         this.price = price;
 
     }
+
 
 
     @Override

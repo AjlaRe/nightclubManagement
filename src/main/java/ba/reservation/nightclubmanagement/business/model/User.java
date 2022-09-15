@@ -1,10 +1,6 @@
 package ba.reservation.nightclubmanagement.business.model;
 
 
-
-
-import ba.reservation.nightclubmanagement.business.service.AbstractService;
-
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -20,7 +16,6 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-
 @Entity
 @Table(name = "user")
 @XmlRootElement
@@ -30,8 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
         @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
         @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
         @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name"),
-        @NamedQuery(name = "User.findBySurname", query = "SELECT u FROM User u WHERE u.surname = :surname")})
-
+        @NamedQuery(name = "User.findBySurname", query = "SELECT u FROM User u WHERE u.surname = :surname"),})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -140,6 +134,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "nightclub.business.model.user [id =" + id + "]";
+        return name+"   " + surname+" [ "+id+" ]";
     }
 }

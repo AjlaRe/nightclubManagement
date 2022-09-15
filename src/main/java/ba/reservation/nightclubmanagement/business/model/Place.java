@@ -12,10 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 @Entity
 @Table(name = "place")
+@XmlRootElement
 @NamedQueries({
         @NamedQuery(name = "Place.findAll", query = "SELECT g FROM Place g"),
         @NamedQuery(name = "Place.findById", query = "SELECT g FROM Place g WHERE g.id = :id"),
@@ -34,7 +36,7 @@ public class Place implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "numberofguests")
+    @Column(name = "numberofguest")
     private Integer numberofguests;
     @Basic(optional = false)
     @Column(name = "numberoftable")
@@ -45,6 +47,7 @@ public class Place implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_guest")
     private Integer id_guest;
+
 
 
     public Place(Integer id, Integer numberofguests, Integer numberoftable, BigDecimal price, Integer id_guest) {
@@ -71,24 +74,20 @@ public class Place implements Serializable {
         this.id = id;
     }
 
-    public void getNumberOfGuest(){
-        this.numberofguests = numberofguests;
-
-    }
-
-    public Integer setNumberOfGuests() {
+    public Integer getNumberofguests() {
         return numberofguests;
     }
 
-    public Integer getNumberoftable() {
-      return numberoftable;
-
+    public void setNumberofguests(Integer numberofguests) {
+        this.numberofguests = numberofguests;
     }
 
-    public Integer setNumberOfTable() {
-        this.numberoftable = numberoftable;
+    public Integer getNumberoftable() {
+        return numberoftable;
+    }
 
-        return null;
+    public void setNumberoftable(Integer numberoftable) {
+        this.numberoftable = numberoftable;
     }
 
     public BigDecimal getPrice() {
@@ -128,14 +127,15 @@ public class Place implements Serializable {
         return true;
 
     }
+
     @Override
     public String toString() {
         return "Place{" +
                 "id =" + id +
-                ", numberofguests ='" + numberofguests + '\'' +
-                ", numberoftable ='" + numberoftable + '\'' +
-                ", price ='" + price + '\'' +
-                ", id_guest ='" + id_guest + '\'' +
+                ", numberofguests =" + numberofguests +
+                ", numberoftable =" + numberoftable  +
+                ", price =" + price  +
+                ", id_guest =" + id_guest  +
                 '}';
 
 
@@ -143,6 +143,4 @@ public class Place implements Serializable {
     public void setCode(String text) {
     }
 
-    public void setNumberofguests(int parseInt) {
-    }
 }

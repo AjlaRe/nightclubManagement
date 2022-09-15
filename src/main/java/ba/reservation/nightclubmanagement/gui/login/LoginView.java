@@ -18,7 +18,7 @@ public class LoginView extends GridPane {
     private final PasswordField passwordField = new PasswordField();
     private final Button loginButton = new Button("Prijava");
     private final Button cancelButton = new Button("Odustani");
-    private final Label messageLabel = new Label();//ovdje ne piše ništa..sadržaj ćemo možda dinamički popuniti
+    private final Label messageLabel = new Label();
 
     public LoginView() {
         setHgap(10);
@@ -26,20 +26,18 @@ public class LoginView extends GridPane {
         setPadding(new Insets(40, 25, 40, 25));
         setAlignment(Pos.CENTER);
 
-        //username
         add(usernameLabel, 0, 0);
         add(usernameTextField, 1, 0);
-        //password
+
         add(passwordLabel, 0, 1);
         add(passwordField, 1, 1);
-        //FlowPane
+
         FlowPane flowPane = new FlowPane();
         flowPane.setAlignment(Pos.CENTER_RIGHT);
         loginButton.setOnAction(Controller.instance().getEventBus().getLoginEvent());
         cancelButton.setOnAction(Controller.instance().getEventBus().getCancelEvent());
         flowPane.getChildren().addAll(loginButton, cancelButton);
         add(flowPane, 1, 2);
-        //message
         add(messageLabel, 1, 3);
     }
 

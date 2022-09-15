@@ -10,11 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,8 +25,10 @@ public class PlaceAdminPanel extends VBox {
 
     private TextField placeCodeTextField = new TextField();
 
-    private TextField numberOfPlaceTextField = new TextField();
+    private TextField numberOfTableTextField = new TextField();
     private TextField priceTextField = new TextField();
+
+    private TextField numberOfGuestTextField = new TextField();
 
     private Button addPlaceButton = new Button("Dodaj stol/mjesto");
 
@@ -41,12 +39,12 @@ public class PlaceAdminPanel extends VBox {
         setSpacing(5);
         setPadding(new Insets(10, 10, 10, 10));
 
-        numberOfPlaceTextField.textProperty().addListener(new ChangeListener<String>() {
+        numberOfTableTextField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
                                 String newValue) {
                 if (!newValue.matches("\\d*")) {
-                    numberOfPlaceTextField.setText(newValue.replaceAll("[^\\d]", ""));
+                    numberOfTableTextField.setText(newValue.replaceAll("[^\\d]", ""));
                 }
             }
         });
@@ -75,14 +73,16 @@ public class PlaceAdminPanel extends VBox {
     private HBox getForm(){
         HBox form = new HBox();
         form.setSpacing(3);
-        placeCodeTextField.setPromptText("KOD/BROJ STOLA..");
-        numberOfPlaceTextField.setPromptText("Broj osoba za stolom..");
+        placeCodeTextField.setPromptText("KOD-ID");
+        numberOfGuestTextField.setPromptText("Broj osoba za stolom...");
+        numberOfTableTextField.setPromptText("Broj stola..");
         priceTextField.setPromptText("Cijena stola..");
         addPlaceButton.setOnAction(this::addPlace);
         removePlaceButton.setOnAction(this::removePlace);
         form.getChildren().addAll(
                 placeCodeTextField,
-                numberOfPlaceTextField,
+                numberOfTableTextField,
+                numberOfGuestTextField,
                 priceTextField,
                 addPlaceButton,
                 removePlaceButton);
@@ -100,16 +100,18 @@ public class PlaceAdminPanel extends VBox {
         placeObservableList.remove(selectedPlace);
     }
 
-    private void setAddPlaceButton(ActionEvent actionEvent){
+    private void AddPlace(ActionEvent actionEvent){
         Place place = new Place();
         place.setCode(placeCodeTextField.getText());
-        place.setNumberofguests(Integer.parseInt(numberOfPlaceTextField.getText()));
+        place.setNumberofguests(Integer.parseInt(numberOfGuestTextField.getText()));
+        place.setNumberoftable(Integer.parseInt(numberOfTableTextField.getText()));
         place.setPrice(new BigDecimal(priceTextField.getText()));
         PlaceService placeService = PlaceServiceFactory.SERVICE.getPlaceService();
         placeService.create(place);
         placeObservableList.add(place);
         placeCodeTextField.setText("");
-        numberOfPlaceTextField.clear();
+        numberOfTableTextField.clear();
+        numberOfGuestTextField.clear();
         priceTextField.setText("");
     }
 }

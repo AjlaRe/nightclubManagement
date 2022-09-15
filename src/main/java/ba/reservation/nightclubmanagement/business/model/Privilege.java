@@ -1,5 +1,7 @@
 package ba.reservation.nightclubmanagement.business.model;
 
+
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,17 +13,18 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.List;
 
-
 @Entity
 @Table(name = "privilege")
+@XmlRootElement
 @NamedQueries({
         @NamedQuery(name = "Privilege.findAll", query = "SELECT p FROM Privilege p"),
         @NamedQuery(name = "Privilege.findById", query = "SELECT p FROM Privilege p WHERE p.id = :id"),
         @NamedQuery(name = "Privilege.findByName", query = "SELECT p FROM Privilege p WHERE p.name = :name")})
-
 public class Privilege implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,6 +67,14 @@ public class Privilege implements Serializable {
         this.name = name;
     }
 
+    @XmlTransient
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
 
     @Override
     public int hashCode() {

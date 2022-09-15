@@ -12,14 +12,15 @@ module ba.reservation.nightclubmanagement {
     requires mysql.connector.java;
     requires org.hibernate.orm.core;
     requires org.hibernate.commons.annotations;
-
+    requires java.desktop;
 
 
     opens ba.reservation.nightclubmanagement to javafx.fxml;
     opens ba.reservation.nightclubmanagement.business.model to org.hibernate.orm.core;
+    opens ba.reservation.nightclubmanagement.gui to javafx.base;
+
     exports ba.reservation.nightclubmanagement;
-    exports ba.reservation.nightclubmanagement.gui;
-    opens ba.reservation.nightclubmanagement.gui to javafx.fxml;
+    exports ba.reservation.nightclubmanagement.business.model;
 
 
 }

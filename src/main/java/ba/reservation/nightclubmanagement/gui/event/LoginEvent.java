@@ -1,7 +1,5 @@
 package ba.reservation.nightclubmanagement.gui.event;
 
-
-
 import ba.reservation.nightclubmanagement.business.model.Privilege;
 import ba.reservation.nightclubmanagement.business.model.User;
 import ba.reservation.nightclubmanagement.business.service.UserServiceFactory;
@@ -13,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+
 
 public class LoginEvent implements EventHandler<ActionEvent> {
     @Override

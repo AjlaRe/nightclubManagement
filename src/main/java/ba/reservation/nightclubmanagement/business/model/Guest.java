@@ -1,26 +1,20 @@
 package ba.reservation.nightclubmanagement.business.model;
 
 
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "guest")
+@XmlRootElement
 @NamedQueries({
         @NamedQuery(name = "Guest.findAll", query = "SELECT g FROM Guest g"),
         @NamedQuery(name = "Guest.findById", query = "SELECT g FROM Guest g WHERE g.id = :id"),
         @NamedQuery(name = "Guest.findByDocument", query = "SELECT g FROM Guest g WHERE g.document = :document"),
         @NamedQuery(name = "Guest.findByName", query = "SELECT g FROM Guest g WHERE g.name = :name"),
         @NamedQuery(name = "Guest.findBySurname", query = "SELECT g FROM Guest g WHERE g.surname = :surname")})
+
 public class Guest implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -86,6 +80,7 @@ public class Guest implements Serializable {
     public void setSurname(String surname) {
         this.surname = surname;
     }
+
 
 
     @Override

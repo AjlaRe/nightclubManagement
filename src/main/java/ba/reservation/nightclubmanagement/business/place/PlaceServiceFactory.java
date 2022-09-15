@@ -5,7 +5,7 @@ public enum PlaceServiceFactory {
 
     SERVICE(new PlaceService());
 
-    private PlaceService placeService;
+    private  PlaceService placeService;
 
     PlaceServiceFactory(PlaceService placeService){
         this.placeService = placeService;
