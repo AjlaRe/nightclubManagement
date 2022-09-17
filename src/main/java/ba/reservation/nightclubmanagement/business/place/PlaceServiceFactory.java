@@ -3,7 +3,7 @@ package ba.reservation.nightclubmanagement.business.place;
 
 public enum PlaceServiceFactory {
 
-    SERVICE(new PlaceService());
+    SERVICE(new PlaceService()), PLACE_SERVICE(new PlaceService());
 
     private  PlaceService placeService;
 

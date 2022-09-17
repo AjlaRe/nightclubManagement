@@ -24,7 +24,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 import java.util.List;
-import static javafx.collections.FXCollections.observableList;
 
 public class UserAdminPanel extends VBox {
     private Label titleLabel = new Label("Administracija korisnika");
@@ -72,10 +71,10 @@ public class UserAdminPanel extends VBox {
         List<Privilege> privileges = PrivilegeServiceFactory.PRIVILEGE_SERVICE.getPrivilegeService().findAll();
         privilegeChoiceBox.setItems(FXCollections.observableList(privileges));
         privilegeChoiceBox.getSelectionModel().select(0);
-        usernameTextField.setPromptText("Username..");
-        passwordField.setPromptText("Password..");
-        nameTextField.setPromptText("Ime..");
-        surnameTextField.setPromptText("Prezime..");
+        usernameTextField.setPromptText("Username");
+        passwordField.setPromptText("Password");
+        nameTextField.setPromptText("Ime");
+        surnameTextField.setPromptText("Prezime");
         addUserButton.setOnAction(this::addUser);
         deleteUserButton.setOnAction(this::removeUser);
         form.getChildren().addAll(

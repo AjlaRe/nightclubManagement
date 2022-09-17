@@ -20,6 +20,7 @@ public class PlaceService extends AbstractService<Place, Integer> {
         return null;
     }
 
+
     @Override
     protected EntityManager getEntityManager() {
         EntityManagerFactory entityManagerFactory =  Persistence.createEntityManagerFactory(Constants.PU_NAME);
